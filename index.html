@@ -90,6 +90,12 @@
         a.button:hover {
             background-color: #fe6600;
         }
+
+        img {
+        max-width: 60%;
+        height: auto;
+        }
+
     </style>
     <title>DOTACIÓ INFO</title>
 </head>
@@ -142,7 +148,19 @@
 
     <section id="contacte">
         <h2>CONTACTE</h2>
-        <p>Adreça de contacte: <a href="mailto:dot2324@iesnumancia.com">dot2324@iesnumancia.cat</a></p>
+        <p>Adreça de contacte: <a href="mailto:dot2324@iesnumancia.com">dot2324@iesnumancia.cat</a><br><p style="color:white">Fred y Dan</p></p>
+        
     </section>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var year = new Date().getFullYear();
+            var footer = document.createElement("footer");
+            footer.innerHTML = "&copy; " + year + " Institut Numància.";
+            document.body.appendChild(footer);
+        });
+    </script>
+    
+    </html>
 </body>
 </html>
