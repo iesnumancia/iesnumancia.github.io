@@ -160,13 +160,14 @@
     </section>
     
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var year = new Date().getFullYear();
-            var footer = document.createElement("footer");
-            footer.innerHTML = "&copy; " + year + " Institut Numància.";
-            document.body.appendChild(footer);
-        });
+    document.addEventListener("DOMContentLoaded", function () {
+        var year = new Date().getFullYear();
+        var footer = document.createElement("footer");
+        footer.innerHTML = "&copy; " + year + " | <a href='https://github.com/iesnumancia/iesnumancia.github.io' target='_blank'>Codi Font a GitHub.</a>";
+        document.body.appendChild(footer);
+    });
     </script>
+
     
     </html>
 </body>
