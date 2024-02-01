@@ -124,11 +124,11 @@
                 var mensaje = document.getElementById("horariMissatge");
 
                 if (horaActual >= horaInicio && horaActual <= horaFin) {
-                    mensaje.innerHTML = "Estás en horari.";
+                    mensaje.innerHTML = "Estás en horari. De dilluns a divendres de <strong>9:15</strong> a <strong>13:00</strong>";
                     mensaje.style.color = "green";  // Color verde para indicar que está en horario
                     mensaje.style.background = "#00FFBF";
                 } else {
-                    mensaje.innerHTML = "No estás en horari.";
+                    mensaje.innerHTML = "No estás en horari. De dilluns a divendres de <strong>9:15</strong> a <strong>13:00</strong>";
                     mensaje.style.color = "red";  // Color rojo para indicar que está fuera de horario
                     mensaje.style.background = "#FBCEB1";
                 }
