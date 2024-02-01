@@ -7,7 +7,7 @@
     <style>
         body {
             text-align: center;
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
@@ -16,20 +16,64 @@
         header {
             background-color: #333;
             color: white;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            background-color: #444;
             padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            display: inline-block;
+            margin: 0 15px;
+            padding: 10px;
+            color: white;
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.3s;
+        }
+
+        nav a:hover {
+            border-bottom: 2px solid #fff;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .logo {
+            width: 50%;
+            border: 2px solid #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         h2 {
-            margin-top: 20px;
+            margin-top: 40px;
             border-bottom: 2px solid #333;
             padding-bottom: 10px;
             display: inline-block;
         }
 
-        a {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
+        section {
+            padding: 40px 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            border-radius: 10px;
+        }
+
+        a.button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
             background-color: #007BFF;
             color: white;
             text-decoration: none;
@@ -37,25 +81,67 @@
             transition: background-color 0.3s;
         }
 
-        a:hover {
+        a.button:hover {
             background-color: #0056b3;
-        }
-
-        img {
-            border: 2px solid #333;
-            margin: 20px;
-            border-radius: 10px;
         }
     </style>
     <title>DOTACIÓ INFO</title>
 </head>
 <body>
     <header>
-        <img src="logo.png">logo</img>
+        <img class="logo" src="img.png" alt="IESNUMANCIA Logo"/>
     </header>
-    <h2>FORMULARI INCIDÈNCIES ALUMNAT</h2>
-    <a href="https://forms.gle/tea2xU5R2hARjE5p6">PER ANAR AL FORMULARI</a>
-    <h2>CONTRASENYA WIFI</h2><br>
-    <img src="img.png" alt="Wi-Fi Image"/>
+
+    <nav>
+        <a href="#formulari">Formulari</a>
+        <a href="#wifi">Contrasenya Wifi</a>
+        <a href="#horari">Horari</a>
+        <a href="#contacte">Contacte</a>
+    </nav>
+
+    <section id="formulari">
+        <h2>FORMULARI INCIDÈNCIES ALUMNAT</h2>
+        <br>
+        <a class="button" href="https://forms.gle/tea2xU5R2hARjE5p6">BOTÓ PER ANAR AL FORMULARI</a>
+    </section>
+
+    <section id="wifi">
+        <h2>CONTRASENYA WIFI</h2>
+        <br>
+        <img src="img.png" alt="Wi-Fi Image"/>
+    </section>
+
+    <section id="horari">
+        <h2>HORARI</h2>
+        <div id="horariMissatge" style="border: 2px solid #333; padding: 10px; border-radius: 10px;"></div>
+
+
+        <script>
+            function verificarHorario() {
+                var horaActual = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                var horaInicio = "09:15";
+                var horaFin = "13:00";
+                var mensaje = document.getElementById("horariMissatge");
+
+                if (horaActual >= horaInicio && horaActual <= horaFin) {
+                    mensaje.innerHTML = "Estás en horari.";
+                    mensaje.style.color = "green";  // Color verde para indicar que está en horario
+                    mensaje.style.background = "#00FFBF";
+                } else {
+                    mensaje.innerHTML = "No estás en horari.";
+                    mensaje.style.color = "red";  // Color rojo para indicar que está fuera de horario
+                    mensaje.style.background = "#FBCEB1";
+                }
+            }
+
+            verificarHorario();  // Verificar el horario al cargar la página
+        </script>
+    </section>
+
+
+    <section id="contacte">
+        <h2>CONTACTE</h2>
+        <p>Adreça de contacte: <a href="mailto:dot2324@iesnumancia.com">dot2324@iesnumancia.cat</a></p>
+    </section>
 </body>
 </html>
