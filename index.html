@@ -18,6 +18,12 @@
             color: white;
             padding: 20px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .logo {
+            width: 10%;
+
         }
 
         nav {
@@ -48,18 +54,12 @@
             margin: 0;
         }
 
-        .logo {
-            width: 20%;
-            border: 2px solid #333;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
         h2 {
             margin-top: 40px;
             border-bottom: 2px solid #333;
             padding-bottom: 10px;
             display: inline-block;
+            color: #005500;
         }
 
         section {
@@ -74,7 +74,7 @@
             display: inline-block;
             margin-top: 20px;
             padding: 15px 30px;
-            background-color: #007BFF;
+            background-color: #fe6600;
             color: white;
             text-decoration: none;
             border-radius: 5px;
@@ -82,15 +82,12 @@
         }
 
         a.button:hover {
-            background-color: #0056b3;
+            background-color: #fe6600;
         }
     </style>
     <title>DOTACIÓ INFO</title>
 </head>
 <body>
-    <header>
-        <img class="logo" src="logo.png" alt="IESNUMANCIA Logo"/>
-    </header>
 
     <nav>
         <a href="#formulari">Formulari</a>
@@ -115,7 +112,6 @@
         <h2>HORARI</h2>
         <div id="horariMissatge" style="border: 2px solid #333; padding: 10px; border-radius: 10px;"></div>
 
-
         <script>
             function verificarHorario() {
                 var horaActual = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -124,11 +120,11 @@
                 var mensaje = document.getElementById("horariMissatge");
 
                 if (horaActual >= horaInicio && horaActual <= horaFin) {
-                    mensaje.innerHTML = "Estás en horari. De dilluns a divendres de <strong>9:15</strong> a <strong>13:00</strong>";
+                    mensaje.innerHTML = "Estás en horari. <br>De dilluns a divendres de <strong>9:15</strong> a <strong>13:00</strong>";
                     mensaje.style.color = "green";  // Color verde para indicar que está en horario
                     mensaje.style.background = "#00FFBF";
                 } else {
-                    mensaje.innerHTML = "No estás en horari. De dilluns a divendres de <strong>9:15</strong> a <strong>13:00</strong>";
+                    mensaje.innerHTML = "No estás en horari. <br>De dilluns a divendres de <strong>9:15</strong> a <strong>13:00</strong>";
                     mensaje.style.color = "red";  // Color rojo para indicar que está fuera de horario
                     mensaje.style.background = "#FBCEB1";
                 }
@@ -137,7 +133,6 @@
             verificarHorario();  // Verificar el horario al cargar la página
         </script>
     </section>
-
 
     <section id="contacte">
         <h2>CONTACTE</h2>
