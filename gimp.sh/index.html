@@ -11,20 +11,6 @@ else
     echo "El GIMP ja està instal·lat."
 fi
 
-# Verifica l'idioma del GIMP i el configura en català si és necessari
-if [ -z "$LANG" ] || [[ ! "$LANG" == *'ca'* ]]; then
-    echo "Configurant el GIMP en català..."
-
-    # Estableix la variable d'entorn del llenguatge del GIMP a català
-    export LANG=ca
-
-    # Pots afegir aquí altres comandes necessàries per canviar l'idioma
-
-    echo "El GIMP configurat en català."
-else
-    echo "El GIMP ja està configurat en català."
-fi
-
 # Executa el GIMP
 echo "Executant el GIMP..."
 gimp
