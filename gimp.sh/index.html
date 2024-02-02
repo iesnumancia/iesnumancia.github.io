@@ -2,8 +2,8 @@
 
 # Comprobar si GIMP está instalado
 if ! command -v gimp &> /dev/null; then
-    echo "GIMP no está instalado. Actualizando lista de dependencias y instalando GIMP..."
-    
+    echo "GIMP no está instalado. Actualizando lista de dependencias e instalando GIMP..."
+
     # Actualizar la lista de dependencias e instalar GIMP
     sudo apt update
     sudo apt install -y gimp
@@ -16,7 +16,7 @@ if [ -z "$LANG" ] || [[ ! "$LANG" == *'es'* ]]; then
     echo "Configurando GIMP en español..."
     
     # Establecer la variable de entorno del idioma de GIMP a español
-    export LANG=es_ES.UTF-8
+    export LANG=es
 
     # Puedes agregar aquí cualquier otro comando necesario para cambiar el idioma
 
