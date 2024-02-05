@@ -1,16 +1,27 @@
 #!/bin/bash
 
-# Comprova si el GIMP està instal·lat
-if ! command -v gimp &> /dev/null; then
-    echo "El GIMP no està instal·lat. Actualitzant la llista de dependències i instal·lant el GIMP..."
-
-    # Actualitza la llista de dependències i instal·la el GIMP
-    sudo apt update
-    sudo apt install -y gimp
-else
-    echo "El GIMP ja està instal·lat."
+# Verificar si GIMP está instalado
+if command -v gimp &> /dev/null
+then
+    echo "GIMP está instalado. Desinstalando..."
+    sudo apt-get remove --purge gimp -y
+    sudo apt-get autoremove -y
+    echo "GIMP desinstalado correctamente."
 fi
 
-# Executa el GIMP
-echo "Executant el GIMP..."
-gimp
+# Solicitar la contraseña root desde el principio
+sudo echo "Solicitando contraseña root..."
+
+# Instalar Flatpak
+echo "Instalando Flatpak..."
+sudo apt-get install flatpak -y
+
+# Agregar el repositorio Flathub
+echo "Agregando Flathub..."
+flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+# Instalar GIMP a través de Flatpak
+echo "Instalando GIMP..."
+flatpak install flathub org.gimp.GIMP -y
+
+echo "GIMP instalado correctamente a través de Flatpak."
