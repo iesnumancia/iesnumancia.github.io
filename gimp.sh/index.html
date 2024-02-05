@@ -1,28 +1,36 @@
 #!/bin/bash
 
+# Colores épicos
+VERDE='\033[1;32m'
+NARANJA='\033[1;33m'
+RESET='\033[0m'
+
 # Solicitar la contraseña root desde el principio
-sudo echo "Capaz se solicita contraseña root..."
+sudo echo -e "${NARANJA}Capaz se solicita contraseña root...${RESET}"
 
 # Verificar si GIMP está instalado a través de Apt
 if command -v gimp &> /dev/null
 then
-    echo "GIMP está instalado a través de Apt. Desinstalando..."
+    echo -e "${VERDE}GIMP está instalado a través de Apt. Desinstalando...${RESET}"
     sudo apt-get remove --purge gimp -y
     sudo apt-get autoremove -y
-    echo "GIMP desinstalado correctamente."
+    echo -e "${VERDE}GIMP desinstalado correctamente.${RESET}"
 fi
 
 # Verificar si GIMP está instalado a través de Flatpak
 if flatpak list | grep -q "org.gimp.GIMP"
 then
-    echo "GIMP está instalado a través de Flatpak. No es necesario hacer nada."
+    echo -e "${VERDE}GIMP está instalado a través de Flatpak. No es necesario hacer nada.${RESET}"
 else
     # Agregar el repositorio Flathub
-    echo "Agregando Flathub..."
+    echo -e "${NARANJA}Agregando Flathub...${RESET}"
     flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
     # Instalar GIMP a través de Flatpak
-    echo "Instalando GIMP..."
+    echo -e "${NARANJA}Instalando GIMP...${RESET}"
     flatpak install flathub org.gimp.GIMP -y
-    echo "GIMP instalado correctamente a través de Flatpak."
+    echo -e "${VERDE}GIMP instalado correctamente a través de Flatpak.${RESET}"
 fi
+
+# Firma modificada
+echo -e "\n${NARANJA}Dot2324 - 5/2/2024.${RESET}"
