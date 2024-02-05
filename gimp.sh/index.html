@@ -1,27 +1,28 @@
 #!/bin/bash
 
-# Verificar si GIMP está instalado
+# Solicitar la contraseña root desde el principio
+sudo echo "Solicitando contraseña root..."
+
+# Verificar si GIMP está instalado a través de Apt
 if command -v gimp &> /dev/null
 then
-    echo "GIMP está instalado. Desinstalando..."
+    echo "GIMP está instalado a través de Apt. Desinstalando..."
     sudo apt-get remove --purge gimp -y
     sudo apt-get autoremove -y
     echo "GIMP desinstalado correctamente."
 fi
 
-# Solicitar la contraseña root desde el principio
-sudo echo "Solicitando contraseña root..."
+# Verificar si GIMP está instalado a través de Flatpak
+if flatpak list | grep -q "org.gimp.GIMP"
+then
+    echo "GIMP está instalado a través de Flatpak. No es necesario hacer nada."
+else
+    # Agregar el repositorio Flathub
+    echo "Agregando Flathub..."
+    flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-# Instalar Flatpak
-echo "Instalando Flatpak..."
-sudo apt-get install flatpak -y
-
-# Agregar el repositorio Flathub
-echo "Agregando Flathub..."
-flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-
-# Instalar GIMP a través de Flatpak
-echo "Instalando GIMP..."
-flatpak install flathub org.gimp.GIMP -y
-
-echo "GIMP instalado correctamente a través de Flatpak."
+    # Instalar GIMP a través de Flatpak
+    echo "Instalando GIMP..."
+    flatpak install flathub org.gimp.GIMP -y
+    echo "GIMP instalado correctamente a través de Flatpak."
+fi
