@@ -8,6 +8,15 @@ RESET='\033[0m'
 # Solicitar la contraseña root desde el principio
 sudo echo -e "${NARANJA}Capaz se solicita contraseña root...${RESET}"
 
+# Verifica si es posible actualizar los paquetes
+if sudo apt-get update; then
+    echo -e "${VERDE}Actualizando los paquetes del sistema${RESET}"
+    sudo apt-get upgrade --fix-missing -y
+else
+    echo -e "${VERDE}No se han podido actualizar los paquetes del sistema${RESET}"
+    exit 1
+fi
+
 # Verificar si GIMP está instalado a través de Apt
 if command -v gimp &> /dev/null
 then
@@ -15,6 +24,14 @@ then
     sudo apt-get remove --purge gimp -y
     sudo apt-get autoremove -y
     echo -e "${VERDE}GIMP desinstalado correctamente.${RESET}"
+fi
+
+# Verifica si Flatpak está instalado
+if command -v flatpak &> /dev/null; then
+    echo -e "${VERDE}Flatpak esta instalado${RESET}"
+else
+     echo -e "${VERDE}Instalando flatpak...${RESET}"
+    sudo apt-get install flatpak -y
 fi
 
 # Verificar si GIMP está instalado a través de Flatpak
@@ -30,6 +47,13 @@ else
     echo -e "${NARANJA}Instalando GIMP...${RESET}"
     flatpak install flathub org.gimp.GIMP -y
     echo -e "${VERDE}GIMP instalado correctamente a través de Flatpak.${RESET}"
+fi
+
+# Intenta restablecer permisos
+if flatpak permission-reset org.gimp.GIMP &> /dev/null; then
+    echo -e "${VERDE}Los permisos para GIMP han sido restablecidos correctamente.${RESET}"
+else
+    echo -e "${NARANJA}Hubo un error al intentar restablecer los permisos para GIMP.${RESET}"
 fi
 
 # Firma modificada
